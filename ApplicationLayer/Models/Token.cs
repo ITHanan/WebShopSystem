@@ -1,0 +1,17 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace ApplicationLayer.Models
+{
+    public class Token
+    {
+        public int TokenID { get; set; }
+        public int UserID { get; set; }
+        public DateTime CreateAt { get; set; }
+        public DateTime ExpressAt { get; set; }
+
+
+    }
+}
