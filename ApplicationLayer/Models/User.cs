@@ -10,11 +10,12 @@ namespace ApplicationLayer.Models
     {
         public int UserID { get; set; }
         public string UserName { get; set; }
+        [EmailAddress]
         public string Email { get; set; }
-        public int PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
         [Required]
-        public int PasswordHash { get; set; }
-        public DateTime CreateAt { get; set; }
+        public string PasswordHash { get; set; }
+        public DateTime CreatedAt { get; set; }
 
     }
 }

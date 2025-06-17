@@ -20,7 +20,7 @@ namespace ApplicationLayer.Models
         public DateTime Time { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public int MaxParticpants { get; set; }
+        public int MaxParticipants { get; set; }
         public int TeacherID { get; set; }
         public string Location { get; set; }
     }
