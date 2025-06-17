@@ -7,15 +7,10 @@ namespace ApplicationLayer.Models
 {
     public class Course
     {
-        public int CourseID { get; set; }
+         public int CourseID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public enum CourseLevel
-        {
-            Beginner,
-        Intermediate,
-        Advanced
-        }
+        public CourseLevel Level { get; set; }
         public string Language { get; set; }
         public DateTime Time { get; set; }
         public DateTime StartDate { get; set; }
