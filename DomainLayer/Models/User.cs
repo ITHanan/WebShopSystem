@@ -17,5 +17,11 @@ namespace ApplicationLayer.Models
         public string PasswordHash { get; set; }
         public DateTime CreatedAt { get; set; }
 
+        public string Role { get; set; } = "Participant"; // Default role
+
+
+        // ? Navigation property
+        public ICollection<Enrollment> Enrollments { get; set; }
+
     }
 }

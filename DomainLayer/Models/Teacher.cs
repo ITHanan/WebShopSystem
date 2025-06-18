@@ -12,5 +12,7 @@ namespace ApplicationLayer.Models
         public string Bio { get; set; }
         public string ContactInfo { get; set; }
         public string PhotoUrl { get; set; }
+
+        public ICollection<Course> Courses { get; set; }
     }
 }
