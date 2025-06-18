@@ -1,4 +1,7 @@
 
+using ApplicationLayer;
+using InfrastructureLayer;
+
 namespace API
 {
     public class Program
@@ -10,6 +13,12 @@ namespace API
             // Add services to the container.
 
             builder.Services.AddControllers();
+
+
+            // Add services from Application and Infrastructure
+            builder.Services.AddApplicationServices();
+            builder.Services.AddInfrastructureServices(builder.Configuration);
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
