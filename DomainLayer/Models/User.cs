@@ -4,17 +4,17 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ApplicationLayer.Models
+namespace DomainLayer.Models
 {
     public class User
     {
         public int UserID { get; set; }
-        public string UserName { get; set; }
+        public string? UserName { get; set; }
         [EmailAddress]
-        public string Email { get; set; }
+        public string? Email { get; set; }
         public string PhoneNumber { get; set; }
         [Required]
-        public string PasswordHash { get; set; }
+        public string PasswordHash { get; set; } = null!;
         public DateTime CreatedAt { get; set; }
 
         public string Role { get; set; } = "Participant"; // Default role

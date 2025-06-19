@@ -1,6 +1,7 @@
 
 using ApplicationLayer;
 using InfrastructureLayer;
+using InfrastructureLayer.Extensions;
 
 namespace API
 {
@@ -19,9 +20,12 @@ namespace API
             builder.Services.AddApplicationServices();
             builder.Services.AddInfrastructureServices(builder.Configuration);
 
+            builder.Services.AddJwtAuthentication(builder.Configuration);
+
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            builder.Services.AddSwaggerWithJwt();
 
             var app = builder.Build();
 
@@ -34,10 +38,8 @@ namespace API
 
 
             app.UseHttpsRedirection();
-
+            app.UseAuthentication(); // must come before UseAuthorization
             app.UseAuthorization();
-
-
             app.MapControllers();
 
             app.Run();
