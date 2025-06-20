@@ -1,4 +1,4 @@
-namespace ApplicationLayer.Models
+namespace DomainLayer.Models
 {
     public enum CourseLevel
     {

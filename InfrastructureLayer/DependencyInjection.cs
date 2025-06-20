@@ -1,4 +1,7 @@
-﻿using InfrastructureLayer.Data;
+﻿using ApplicationLayer.Interfaces;
+using InfrastructureLayer.Data;
+using InfrastructureLayer.Helpers;
+using InfrastructureLayer.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,7 +19,8 @@ namespace InfrastructureLayer
         {
             services.AddDbContext<WebShopSystemDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
-
+            services.AddScoped<IAuthRepository, AuthRepository>();
+            services.AddScoped<IJwtGenerator, JWTGenerator>();
 
             return services;
         }
