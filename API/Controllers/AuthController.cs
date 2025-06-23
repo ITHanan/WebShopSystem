@@ -31,5 +31,18 @@ namespace API.Controllers
 
             return Ok(result);
         }
+
+        [AllowAnonymous]
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] UserLoginDto userLoginDto)
+        {
+            var query = new LoginQuery(userLoginDto.UserName, userLoginDto.Password);
+            var result = await _mediator.Send(query);
+
+            if (!result.IsSuccess)
+                return BadRequest(result);
+
+            return Ok(result);
+        }
     }
 }
