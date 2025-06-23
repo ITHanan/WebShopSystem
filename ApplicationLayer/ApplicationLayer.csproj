@@ -19,8 +19,4 @@
     <ProjectReference Include="..\DomainLayer\DomainLayer.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Authorize\Queries\" />
-  </ItemGroup>
-
 </Project>
