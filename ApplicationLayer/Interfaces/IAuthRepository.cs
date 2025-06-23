@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ApplicationLayer.Interfaces5
+namespace ApplicationLayer.Interfaces
 {
     public interface IAuthRepository
     {
