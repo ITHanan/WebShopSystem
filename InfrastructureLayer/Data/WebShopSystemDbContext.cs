@@ -20,6 +20,7 @@ namespace InfrastructureLayer.Data
         public DbSet<Enrollment> Enrollments { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<CourseMaterial> CourseMaterials { get; set; }
+        public DbSet<Language> Languages { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -81,6 +82,30 @@ namespace InfrastructureLayer.Data
                 .HasOne(m => m.Course)
                 .WithMany(c => c.Materials)
                 .HasForeignKey(m => m.CourseID);
+
+            // Language
+            modelBuilder.Entity<Course>()
+                .HasOne(c => c.Language)
+                .WithMany(l => l.Courses) 
+                .HasForeignKey(c => c.LanguageId);
+
+
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Language>().HasData(
+                new Language { LanguageId = 1, Code = "en", Name = "English", FlagUrl = "/images/flags/en.png" },
+                new Language { LanguageId = 2, Code = "fr", Name = "French", FlagUrl = "/images/flags/fr.png" },
+                new Language { LanguageId = 3, Code = "de", Name = "German", FlagUrl = "/images/flags/de.png" },
+                new Language { LanguageId = 4, Code = "es", Name = "Spanish", FlagUrl = "/images/flags/es.png" },
+                new Language { LanguageId = 5, Code = "hi", Name = "Hindi", FlagUrl = "/images/flags/hi.png" },
+                new Language { LanguageId = 6, Code = "ja", Name = "Japanese", FlagUrl = "/images/flags/ja.png" },
+                new Language { LanguageId = 7, Code = "tr", Name = "Turkish", FlagUrl = "/images/flags/tr.png" },
+                new Language { LanguageId = 8, Code = "sv", Name = "Swedish", FlagUrl = "/images/flags/sv.png" },
+                new Language { LanguageId = 9, Code = "it", Name = "Italian", FlagUrl = "/images/flags/it.png" },
+                new Language { LanguageId = 10, Code = "pt-BR", Name = "Brazilian", FlagUrl = "/images/flags/pt-BR.png" },
+                new Language { LanguageId = 11, Code = "ru", Name = "Russian", FlagUrl = "/images/flags/ru.png" },
+                new Language { LanguageId = 12, Code = "ch", Name = "Switzerland", FlagUrl = "/images/flags/ch.png" }
+            );
         }
     }
 }

@@ -8,11 +8,11 @@ namespace DomainLayer.Models
     public class Teacher
     {
         public int TeacherID { get; set; }
-        public string FullName { get; set; }
-        public string Bio { get; set; }
-        public string ContactInfo { get; set; }
-        public string PhotoUrl { get; set; }
+        public string? FullName { get; set; }
+        public string? Bio { get; set; }
+        public string? ContactInfo { get; set; }
+        public string? PhotoUrl { get; set; }
 
-        public ICollection<Course> Courses { get; set; }
+        public ICollection<Course>? Courses { get; set; }
     }
 }

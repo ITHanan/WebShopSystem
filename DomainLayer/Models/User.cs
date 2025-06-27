@@ -16,11 +16,15 @@ namespace DomainLayer.Models
         public string PasswordHash { get; set; } = null!;
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
+
+        public int? LanguageId { get; set; } // nullable if language selection is optional
+        public Language? Language { get; set; }
+
         public string Role { get; set; } = "Participant"; // Default role
 
 
         // ? Navigation property
-        public ICollection<Enrollment> Enrollments { get; set; }
+        public ICollection<Enrollment>? Enrollments { get; set; }
 
     }
 }
