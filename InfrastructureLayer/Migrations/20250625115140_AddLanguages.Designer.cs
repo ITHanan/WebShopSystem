@@ -4,6 +4,7 @@ using InfrastructureLayer.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InfrastructureLayer.Migrations
 {
     [DbContext(typeof(WebShopSystemDbContext))]
-    partial class WebShopSystemDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250625115140_AddLanguages")]
+    partial class AddLanguages
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,24 +34,28 @@ namespace InfrastructureLayer.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CourseID"));
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("LanguageId")
-                        .HasColumnType("int");
+                    b.Property<string>("Language")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Level")
                         .HasColumnType("int");
 
                     b.Property<string>("Location")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("MaxParticipants")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("StartDate")
@@ -57,9 +64,10 @@ namespace InfrastructureLayer.Migrations
                     b.Property<int>("TeacherID")
                         .HasColumnType("int");
 
-                    b.HasKey("CourseID");
+                    b.Property<DateTime>("Time")
+                        .HasColumnType("datetime2");
 
-                    b.HasIndex("LanguageId");
+                    b.HasKey("CourseID");
 
                     b.HasIndex("TeacherID");
 
@@ -78,15 +86,18 @@ namespace InfrastructureLayer.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FileURL")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("UploadAt")
+                    b.Property<DateTime>("UploadAt")
                         .HasColumnType("datetime2");
 
                     b.HasKey("MaterialID");
@@ -125,120 +136,6 @@ namespace InfrastructureLayer.Migrations
                     b.ToTable("Enrollments");
                 });
 
-            modelBuilder.Entity("DomainLayer.Models.Language", b =>
-                {
-                    b.Property<int>("LanguageId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LanguageId"));
-
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
-
-                    b.Property<string>("FlagUrl")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("LanguageId");
-
-                    b.ToTable("Languages");
-
-                    b.HasData(
-                        new
-                        {
-                            LanguageId = 1,
-                            Code = "en",
-                            FlagUrl = "/images/flags/en.png",
-                            Name = "English"
-                        },
-                        new
-                        {
-                            LanguageId = 2,
-                            Code = "fr",
-                            FlagUrl = "/images/flags/fr.png",
-                            Name = "French"
-                        },
-                        new
-                        {
-                            LanguageId = 3,
-                            Code = "de",
-                            FlagUrl = "/images/flags/de.png",
-                            Name = "German"
-                        },
-                        new
-                        {
-                            LanguageId = 4,
-                            Code = "es",
-                            FlagUrl = "/images/flags/es.png",
-                            Name = "Spanish"
-                        },
-                        new
-                        {
-                            LanguageId = 5,
-                            Code = "hi",
-                            FlagUrl = "/images/flags/hi.png",
-                            Name = "Hindi"
-                        },
-                        new
-                        {
-                            LanguageId = 6,
-                            Code = "ja",
-                            FlagUrl = "/images/flags/ja.png",
-                            Name = "Japanese"
-                        },
-                        new
-                        {
-                            LanguageId = 7,
-                            Code = "tr",
-                            FlagUrl = "/images/flags/tr.png",
-                            Name = "Turkish"
-                        },
-                        new
-                        {
-                            LanguageId = 8,
-                            Code = "sv",
-                            FlagUrl = "/images/flags/sv.png",
-                            Name = "Swedish"
-                        },
-                        new
-                        {
-                            LanguageId = 9,
-                            Code = "it",
-                            FlagUrl = "/images/flags/it.png",
-                            Name = "Italian"
-                        },
-                        new
-                        {
-                            LanguageId = 10,
-                            Code = "pt-BR",
-                            FlagUrl = "/images/flags/pt-BR.png",
-                            Name = "Brazilian"
-                        },
-                        new
-                        {
-                            LanguageId = 11,
-                            Code = "ru",
-                            FlagUrl = "/images/flags/ru.png",
-                            Name = "Russian"
-                        },
-                        new
-                        {
-                            LanguageId = 12,
-                            Code = "ch",
-                            FlagUrl = "/images/flags/ch.png",
-                            Name = "Switzerland"
-                        });
-                });
-
             modelBuilder.Entity("DomainLayer.Models.Teacher", b =>
                 {
                     b.Property<int>("TeacherID")
@@ -248,15 +145,19 @@ namespace InfrastructureLayer.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TeacherID"));
 
                     b.Property<string>("Bio")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ContactInfo")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FullName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhotoUrl")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("TeacherID");
@@ -278,9 +179,6 @@ namespace InfrastructureLayer.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int?>("LanguageId")
-                        .HasColumnType("int");
-
                     b.Property<string>("PasswordHash")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -300,26 +198,16 @@ namespace InfrastructureLayer.Migrations
                         .IsUnique()
                         .HasFilter("[Email] IS NOT NULL");
 
-                    b.HasIndex("LanguageId");
-
                     b.ToTable("Users");
                 });
 
             modelBuilder.Entity("DomainLayer.Models.Course", b =>
                 {
-                    b.HasOne("DomainLayer.Models.Language", "Language")
-                        .WithMany("Courses")
-                        .HasForeignKey("LanguageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("DomainLayer.Models.Teacher", "Teacher")
                         .WithMany("Courses")
                         .HasForeignKey("TeacherID")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-
-                    b.Navigation("Language");
 
                     b.Navigation("Teacher");
                 });
@@ -354,27 +242,11 @@ namespace InfrastructureLayer.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("DomainLayer.Models.User", b =>
-                {
-                    b.HasOne("DomainLayer.Models.Language", "Language")
-                        .WithMany("Users")
-                        .HasForeignKey("LanguageId");
-
-                    b.Navigation("Language");
-                });
-
             modelBuilder.Entity("DomainLayer.Models.Course", b =>
                 {
                     b.Navigation("Enrollments");
 
                     b.Navigation("Materials");
-                });
-
-            modelBuilder.Entity("DomainLayer.Models.Language", b =>
-                {
-                    b.Navigation("Courses");
-
-                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("DomainLayer.Models.Teacher", b =>

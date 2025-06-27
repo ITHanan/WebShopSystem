@@ -10,9 +10,10 @@ namespace InfrastructureLayer.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "PhoneNumber",
-                table: "Users");
+            // PhoneNumber column does not exist, so no need to drop it.
+            // migrationBuilder.DropColumn(
+            //     name: "PhoneNumber",
+            //     table: "Users");
         }
 
         /// <inheritdoc />

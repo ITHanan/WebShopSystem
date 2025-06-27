@@ -1,4 +1,6 @@
-﻿using FluentValidation;
+﻿using ApplicationLayer.LanguageComAndQu.Commands;
+using ApplicationLayer.LanguageComAndQu.Queries;
+using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using static System.Net.Mime.MediaTypeNames;
@@ -17,6 +19,8 @@ namespace ApplicationLayer
             services.AddAutoMapper(assembly);
 
             services.AddValidatorsFromAssembly(assembly);
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(SetUserLanguageCommand).Assembly));
+
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ApplicationLayer.Behaviors.ValidationBehavior<,>));
 
             return services;
