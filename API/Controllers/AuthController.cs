@@ -1,5 +1,6 @@
 ﻿using ApplicationLayer.Authorize.Commands.Register;
 using ApplicationLayer.Authorize.DTOs;
+using ApplicationLayer.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -44,5 +45,25 @@ namespace API.Controllers
 
             return Ok(result);
         }
+
+
+        
+        [HttpPost("Sign out")]
+        public ActionResult LogOff()
+        {  
+            return RedirectToAction("Index", "Home");
+        }
+
+
+        private readonly IAuthRepository _authRepository;
+        private readonly IJwtGenerator _jwtGenerator;
+
+        //public LogoffQueryHandler(IAuthRepository authRepository, IJwtGenerator jwtGenerator)
+        //{
+        //    _authRepository = authRepository;
+        //    _jwtGenerator = jwtGenerator;
+        //}
+
+
     }
 }
