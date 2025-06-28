@@ -20,7 +20,7 @@ namespace API.Controllers
 
 
         [AllowAnonymous]
-        [HttpPost("register")]
+        [HttpPost("SignUp")]
         public async Task<IActionResult> Register([FromBody] UserRegisterDto userRegisterDto)
         {
             var command = new RegisterCommand(userRegisterDto.UserName, userRegisterDto.UserEmail, userRegisterDto.Password);
