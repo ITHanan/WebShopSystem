@@ -46,8 +46,9 @@ namespace API
                 app.UseSwaggerUI();
             }
 
-            app.UseCors("FrontendPolicy");
+           
             app.UseHttpsRedirection();
+            app.UseCors("FrontendPolicy");
             app.UseAuthentication(); // must come before UseAuthorization
             app.UseAuthorization();
             app.MapControllers();
