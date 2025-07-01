@@ -32,7 +32,7 @@ namespace API.Controllers
             if (!result.IsSuccess)
                 return NotFound(result.Errors);
 
-            return Ok(result.Data); 
+            return Ok(result.Data);
         }
 
 
@@ -64,6 +64,38 @@ namespace API.Controllers
                 return NotFound(result.Errors);
 
             return NoContent();
+        }
+
+
+        /// <summary>
+        /// Get filtered and sorted list of languages.
+        /// </summary>
+        /// <param name="name">Filter by language name</param>
+        /// <param name="code">Filter by language code</param>
+        /// <param name="sortOrder">Sorting direction (asc/desc)</param>
+        /// <param name="sortBy">Field to sort by (Name, Code)</param>
+        /// <returns>List of filtered and sorted languages</returns>
+        [HttpGet("filter")]
+        public async Task<IActionResult> GetFilteredLanguages(
+            [FromQuery] string? name,
+            [FromQuery] string? code,
+            [FromQuery] string sortOrder = "asc",
+            [FromQuery] string sortBy = "name")
+        {
+            var query = new GetFilteredLanguagesQuery
+            {
+                Name = name,
+                Code = code,
+                SortOrder = sortOrder,
+                SortBy = sortBy
+            };
+
+            var result = await _mediator.Send(query);
+
+            if (!result.IsSuccess)
+                return BadRequest(result.Errors);
+
+            return Ok(result.Data);
         }
 
     }
