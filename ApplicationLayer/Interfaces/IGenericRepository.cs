@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,6 +16,8 @@ namespace ApplicationLayer.Interfaces
         Task<OperationResult<T>> UpdateAsync(T entity, CancellationToken cancellationToken = default);
         Task<OperationResult<bool>> DeleteByIdAsync(int id);
         Task<OperationResult<bool>> DeleteAllAsync();
+        Task<IEnumerable<T>> GetAllIncludingAsync(params Expression<Func<T, object>>[] includes);
+
 
 
         IQueryable<T> AsQueryable();
