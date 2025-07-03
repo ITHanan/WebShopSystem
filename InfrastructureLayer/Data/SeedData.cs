@@ -15,7 +15,7 @@ public class DataSeeder
 
     public async Task SeedAsync(int userCount = 30, int teacherCount = 5, int courseCount = 10)
     {
-       // if (await _context.Users.AnyAsync()) return; // already seeded
+       if (await _context.Users.AnyAsync()) return; // already seeded
 
         // Seed Teachers
         var teachers = new Faker<Teacher>()

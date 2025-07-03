@@ -1,4 +1,5 @@
-﻿using ApplicationLayer.LanguageComAndQu.Commands;
+﻿using ApplicationLayer.Courses.Queries;
+using ApplicationLayer.LanguageComAndQu.Commands;
 using ApplicationLayer.LanguageComAndQu.Queries;
 using FluentValidation;
 using MediatR;
@@ -19,7 +20,10 @@ namespace ApplicationLayer
             services.AddAutoMapper(assembly);
 
             services.AddValidatorsFromAssembly(assembly);
-            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(SetUserLanguageCommand).Assembly));
+            services.AddMediatR(configuration => configuration.RegisterServicesFromAssembly(typeof(SetUserLanguageCommand).Assembly));
+
+            services.AddMediatR(configuration => configuration.RegisterServicesFromAssembly(typeof(GetCoursesQueryHandler).Assembly));
+
 
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ApplicationLayer.Behaviors.ValidationBehavior<,>));
 

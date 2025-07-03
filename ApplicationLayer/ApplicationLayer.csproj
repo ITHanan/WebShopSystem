@@ -19,4 +19,8 @@
     <ProjectReference Include="..\DomainLayer\DomainLayer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Courses\Commands\" />
+  </ItemGroup>
+
 </Project>
