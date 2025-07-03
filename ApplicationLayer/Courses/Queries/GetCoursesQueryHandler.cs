@@ -32,17 +32,18 @@ namespace ApplicationLayer.Courses.Queries
             var result = courses.Select(c => new CourseDTO
             {
                 CourseID = c.CourseID,
-                Name = c.Name,
+              //  Name = c.Name,
                 Description = c.Description,
+                FlagUrl= c.Language?.FlagUrl,
                 Level = c.Level.ToString(),
                 Language = c.Language?.Name,
-                FlagUrl= c.Language?.FlagUrl,
+
                 StartDate = c.StartDate,
-                EndDate = c.EndDate,
-                MaxParticipants = c.MaxParticipants,
-                Location = c.Location,
-                TeacherName = $"{c.Teacher?.FullName} ",
-                MaterialCount = c.Materials?.Count ?? 0
+                //EndDate = c.EndDate,
+                //MaxParticipants = c.MaxParticipants,
+                //Location = c.Location,
+                //TeacherName = $"{c.Teacher?.FullName} ",
+                //MaterialCount = c.Materials?.Count ?? 0
             });
 
             return OperationResult<IEnumerable<CourseDTO>>.Success(result);
