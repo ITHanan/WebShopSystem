@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ namespace ApplicationLayer.Courses.DTOs
     public class CourseDTO
     {
         public int CourseID { get; set; }
+        public string? FlagUrl { get; set; }
         public string? Name { get; set; }
         public string? Description { get; set; }
         public string? Level { get; set; }

@@ -36,6 +36,7 @@ namespace ApplicationLayer.Courses.Queries
                 Description = c.Description,
                 Level = c.Level.ToString(),
                 Language = c.Language?.Name,
+                FlagUrl= c.Language?.FlagUrl,
                 StartDate = c.StartDate,
                 EndDate = c.EndDate,
                 MaxParticipants = c.MaxParticipants,
