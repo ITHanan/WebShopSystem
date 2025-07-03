@@ -4,6 +4,7 @@ using InfrastructureLayer.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InfrastructureLayer.Migrations
 {
     [DbContext(typeof(WebShopSystemDbContext))]
-    partial class WebShopSystemDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250703093340_AddCourseCounts")]
+    partial class AddCourseCounts
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,11 +33,6 @@ namespace InfrastructureLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CourseID"));
 
-                    b.Property<int>("AudioCount")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
-
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
@@ -43,11 +41,6 @@ namespace InfrastructureLayer.Migrations
 
                     b.Property<int>("LanguageId")
                         .HasColumnType("int");
-
-                    b.Property<int>("Lessons")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
 
                     b.Property<int>("Level")
                         .HasColumnType("int");
@@ -61,21 +54,11 @@ namespace InfrastructureLayer.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PdfCount")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
-
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("TeacherID")
                         .HasColumnType("int");
-
-                    b.Property<int>("VideoCount")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
 
                     b.HasKey("CourseID");
 

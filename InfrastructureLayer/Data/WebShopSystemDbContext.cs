@@ -89,6 +89,23 @@ namespace InfrastructureLayer.Data
                 .WithMany(l => l.Courses) 
                 .HasForeignKey(c => c.LanguageId);
 
+            modelBuilder.Entity<Course>()
+                .Property(c => c.Lessons)
+                .HasDefaultValue(0);
+
+            modelBuilder.Entity<Course>()
+                .Property(c => c.VideoCount)
+                .HasDefaultValue(0);
+
+            modelBuilder.Entity<Course>()
+                .Property(c => c.PdfCount)
+                .HasDefaultValue(0);
+
+            modelBuilder.Entity<Course>()
+                .Property(c => c.AudioCount)
+                .HasDefaultValue(0);
+
+
 
             base.OnModelCreating(modelBuilder);
 

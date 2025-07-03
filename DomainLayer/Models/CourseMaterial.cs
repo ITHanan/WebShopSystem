@@ -15,5 +15,8 @@ namespace DomainLayer.Models
         public string? FileURL { get; set; }
         public DateTime? UploadAt { get; set; }
         public string? Description { get; set; }
+
+        public string? VideoURL { get; set; }
+        public string? AudioURL { get; set; }
     }
 }

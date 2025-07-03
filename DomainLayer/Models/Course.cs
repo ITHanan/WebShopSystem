@@ -22,6 +22,11 @@ namespace DomainLayer.Models
 
         public string? Location { get; set; }
 
+        public int Lessons { get; set; }
+        public int VideoCount { get; set; }
+        public int PdfCount { get; set; }
+        public int AudioCount { get; set; }
+
 
         public ICollection<Enrollment>? Enrollments { get; set; }
         public ICollection<CourseMaterial>? Materials { get; set; }

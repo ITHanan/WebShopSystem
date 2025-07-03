@@ -23,6 +23,7 @@ namespace ApplicationLayer.Courses.Queries
         {
             // Include Language, Teacher, Materials
             var courses = await _courseRepository.GetAllIncludingAsync(
+                
                 c => c.Language,
                 c => c.Teacher,
                 c => c.Materials
@@ -33,12 +34,16 @@ namespace ApplicationLayer.Courses.Queries
             {
                 CourseID = c.CourseID,
               //  Name = c.Name,
-                Description = c.Description,
-                FlagUrl= c.Language?.FlagUrl,
-                Level = c.Level.ToString(),
+                FlagUrl= c.Language?.FlagUrl, 
                 Language = c.Language?.Name,
+                Description = c.Description,
+                Lessons = c.Lessons,
+                VideoCount = c.VideoCount,
+                PdfCount = c.PdfCount,
+                AudioCount = c.AudioCount,
+             
 
-                StartDate = c.StartDate,
+                //StartDate = c.StartDate,
                 //EndDate = c.EndDate,
                 //MaxParticipants = c.MaxParticipants,
                 //Location = c.Location,
