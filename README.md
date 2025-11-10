@@ -21,7 +21,7 @@ A web-based course management system developed using **ASP.NET (C#)** for the ba
 - View enrolled participants per course
 - Edit detailed course descriptions
 
-----
+-----
 
 ## 🧱 Entities
 
