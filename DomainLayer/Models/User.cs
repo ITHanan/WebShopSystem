@@ -22,6 +22,8 @@ namespace DomainLayer.Models
 
         public string Role { get; set; } = "Participant"; // Default role
 
+        public int? BranchId { get; set; } // nullable for users who are not shop managers
+        public Branch? Branch { get; set; }
 
         // ? Navigation property
         public ICollection<Enrollment>? Enrollments { get; set; }

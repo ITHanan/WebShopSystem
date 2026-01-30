@@ -22,6 +22,7 @@ namespace InfrastructureLayer
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IJwtGenerator, JWTGenerator>();
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddScoped<IBookingRepository, BookingRepository>();
 
             return services;
         }

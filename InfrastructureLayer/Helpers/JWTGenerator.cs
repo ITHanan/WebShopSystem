@@ -34,12 +34,19 @@ namespace InfrastructureLayer.Helpers
             var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             // Define claims to embed in the token
-            var claims = new[]
+            var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, user.UserName!),
                 new Claim(ClaimTypes.Email, user.Email!),
-                new Claim(ClaimTypes.NameIdentifier, user.UserID.ToString())
+                new Claim(ClaimTypes.NameIdentifier, user.UserID.ToString()),
+                new Claim(ClaimTypes.Role, user.Role)
             };
+
+            // Add BranchId claim if user has a branch (shop manager)
+            if (user.BranchId.HasValue)
+            {
+                claims.Add(new Claim("BranchId", user.BranchId.Value.ToString()));
+            }
 
             // Create the JWT token
             var token = new JwtSecurityToken(

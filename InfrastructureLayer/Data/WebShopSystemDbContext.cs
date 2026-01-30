@@ -21,6 +21,8 @@ namespace InfrastructureLayer.Data
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<CourseMaterial> CourseMaterials { get; set; }
         public DbSet<Language> Languages { get; set; }
+        public DbSet<Branch> Branches { get; set; }
+        public DbSet<Booking> Bookings { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -105,6 +107,41 @@ namespace InfrastructureLayer.Data
                 .Property(c => c.AudioCount)
                 .HasDefaultValue(0);
 
+            // BRANCH
+            modelBuilder.Entity<Branch>()
+                .HasKey(b => b.BranchId);
+
+            modelBuilder.Entity<Branch>()
+                .Property(b => b.CreatedAt)
+                .HasDefaultValueSql("GETUTCDATE()");
+
+            modelBuilder.Entity<Branch>()
+                .HasMany(b => b.Users)
+                .WithOne(u => u.Branch)
+                .HasForeignKey(u => u.BranchId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Branch>()
+                .HasMany(b => b.Bookings)
+                .WithOne(bk => bk.Branch)
+                .HasForeignKey(bk => bk.BranchId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // BOOKING
+            modelBuilder.Entity<Booking>()
+                .HasKey(bk => bk.BookingId);
+
+            modelBuilder.Entity<Booking>()
+                .Property(bk => bk.CreatedAt)
+                .HasDefaultValueSql("GETUTCDATE()");
+
+            modelBuilder.Entity<Booking>()
+                .HasIndex(bk => new { bk.BranchId, bk.AppointmentDate })
+                .HasDatabaseName("IX_Booking_BranchId_AppointmentDate");
+
+            modelBuilder.Entity<Booking>()
+                .Property(bk => bk.Status)
+                .HasDefaultValue("Pending");
 
 
             base.OnModelCreating(modelBuilder);
