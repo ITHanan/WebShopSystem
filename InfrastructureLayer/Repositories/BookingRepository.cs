@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace InfrastructureLayer.Repositories
 {
-    internal class BookingRepository : IBookingRepository
+    public class BookingRepository : IBookingRepository
     {
         private readonly WebShopSystemDbContext _context;
 
