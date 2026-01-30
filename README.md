@@ -155,6 +155,95 @@ A web-based course management system developed using **ASP.NET (C#)** for the ba
 - Click on a course → Register  
 - System confirms registration  
 
+### 4. UC-13: Receive Booking for Assigned Branch (Shop Manager)
+**Actor**: Shop Manager  
+**Flow**:
+- Shop manager logs in with assigned branch  
+- Navigate to bookings page  
+- View list of bookings filtered to their assigned branch only  
+- Bookings sorted by appointment date (ascending)  
+- Click on booking to view detailed information  
+- System validates branch ownership before displaying details  
+
+**Branch-Scoped Visibility Rules**:
+- Shop managers can ONLY see bookings for their assigned branch
+- Attempts to access bookings from other branches are blocked
+- System logs unauthorized access attempts
+- Empty state displayed when no bookings exist
+
+**Read-Only Nature at Intake Stage**:
+- Bookings are read-only at this stage
+- No editing allowed until explicit actions (assignment, inspection)
+- Booking integrity is protected
+
+---
+
+## 🗄️ Database Schema
+
+### Entities
+
+**Branch**
+- BranchId (PK)
+- Name
+- Address
+- PhoneNumber
+- CreatedAt
+
+**Booking**
+- BookingId (PK)
+- VehiclePlateNumber
+- ServiceType
+- AppointmentDate
+- Status (Pending, Assigned, InProgress, Completed, Cancelled)
+- CustomerName
+- CustomerPhone
+- CustomerEmail
+- Notes
+- BranchId (FK → Branch)
+- CreatedAt
+- UpdatedAt
+
+**User** (Extended)
+- UserID (PK)
+- UserName
+- Email
+- PasswordHash
+- Role (Participant, ShopManager, Admin)
+- BranchId (FK → Branch, nullable)
+- LanguageId (FK)
+- CreatedAt
+
+**Indexes**:
+- `IX_Booking_BranchId_AppointmentDate` - Optimizes booking retrieval per branch
+
+---
+
+## 🔒 Security & Authorization
+
+### JWT Token Claims
+- `NameIdentifier`: User ID
+- `Name`: Username
+- `Email`: User email
+- `Role`: User role (Participant, ShopManager, Admin)
+- `BranchId`: Assigned branch ID (for shop managers)
+
+### API Endpoints
+
+**Booking Endpoints** (Requires `ShopManager` role):
+
+```
+GET /api/booking
+- Returns bookings for the authenticated shop manager's assigned branch
+- Sorted by appointment date (ascending)
+- Returns 400 if manager has no branch assignment
+
+GET /api/booking/{bookingId}
+- Returns detailed booking information
+- Validates that booking belongs to manager's assigned branch
+- Returns 403 Forbidden if accessing another branch's booking
+- Returns 404 if booking not found
+```
+
 ---
 
 ## 🛠️ Tech Stack
