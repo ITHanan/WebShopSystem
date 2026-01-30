@@ -168,7 +168,7 @@ A web-based course management system developed using **ASP.NET (C#)** for the ba
 **Branch-Scoped Visibility Rules**:
 - Shop managers can ONLY see bookings for their assigned branch
 - Attempts to access bookings from other branches are blocked
-- System logs unauthorized access attempts
+- System logs unauthorized access attempts (via ILogger)
 - Empty state displayed when no bookings exist
 
 **Read-Only Nature at Intake Stage**:

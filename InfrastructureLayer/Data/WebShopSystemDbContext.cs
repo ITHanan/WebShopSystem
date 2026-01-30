@@ -112,6 +112,10 @@ namespace InfrastructureLayer.Data
                 .HasKey(b => b.BranchId);
 
             modelBuilder.Entity<Branch>()
+                .Property(b => b.CreatedAt)
+                .HasDefaultValueSql("GETUTCDATE()");
+
+            modelBuilder.Entity<Branch>()
                 .HasMany(b => b.Users)
                 .WithOne(u => u.Branch)
                 .HasForeignKey(u => u.BranchId)
@@ -126,6 +130,10 @@ namespace InfrastructureLayer.Data
             // BOOKING
             modelBuilder.Entity<Booking>()
                 .HasKey(bk => bk.BookingId);
+
+            modelBuilder.Entity<Booking>()
+                .Property(bk => bk.CreatedAt)
+                .HasDefaultValueSql("GETUTCDATE()");
 
             modelBuilder.Entity<Booking>()
                 .HasIndex(bk => new { bk.BranchId, bk.AppointmentDate })
